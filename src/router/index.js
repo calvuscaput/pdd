@@ -1,22 +1,26 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import MenuPdd from '../views/MenuPdd.vue';
+import QuestionPdd from '../views/QuestionPdd.vue';
+import StatisticPdd from '../views/StatisticPdd.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
+    name: 'menu-pdd',
+    component: MenuPdd,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    path: '/question',
+    name: 'question-pdd',
+    component: QuestionPdd,
+  },
+  {
+    path: '/statistic',
+    name: 'statistic',
+    component: StatisticPdd,
   },
 ];
 

@@ -1,32 +1,31 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <div v-if="!loading">
+      <nav-bar />
     <router-view/>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { initDB } from '@/utils';
+import NavBar from '@/components/UI/NavBar.vue';
 
-nav {
-  padding: 30px;
+export default {
+  name: 'App',
+  components: {
+    NavBar,
+  },
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  async mounted() {
+    this.loading = true;
+    await initDB();
+    this.loading = false;
+  },
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+};
+</script>
