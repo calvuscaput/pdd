@@ -88,28 +88,7 @@ export default {
   },
   data() {
     return {
-      context: {
-        query: {
-          ticket: [],
-          topic: [],
-        },
-        filters: {
-          // Убрать успешные вопросы
-          skipSuccess: false,
-          // Убрать Неизвестные вопросы
-          skipDontTouched: false,
-          // Убрать Убрать неуспешные вопросы
-          skipErrors: false,
-        },
-        sorting: {
-          errorsInStockCountDescending: true,
-          shuffle: false,
-        },
-        mode: {
-          saveProgress: true,
-          infinity: false,
-        },
-      },
+      context: null,
       topics: [],
       tickets: [],
     };
@@ -120,11 +99,11 @@ export default {
       immediate: true,
       handler(val) {
         const ctx = this.$store.state.context;
-        if (ctx) {
+        if (!val) {
           this.context = ctx;
-        } else {
-          this.setContext(val);
+          return;
         }
+        this.setContext(val);
       },
     },
   },
